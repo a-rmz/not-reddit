@@ -7,16 +7,24 @@
 //
 
 import UIKit
+import reddift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return OAuth2Authorizer.sharedInstance.receiveRedirect(url, completion:{(result) -> Void in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let token):
+                DispatchQueue.main.async(execute: { () -> Void in
+                    try? OAuth2TokenRepository.save(token: token, of: token.name)
+                })
+            }
+        })
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
