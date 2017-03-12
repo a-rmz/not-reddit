@@ -1,0 +1,10 @@
+framework module reddift {
+  umbrella header "reddift.h"
+
+  export *
+  module * { export * }
+}
+
+module reddift.Swift {
+    header "reddift-Swift.h"
+}
