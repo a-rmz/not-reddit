@@ -13,8 +13,9 @@
 		30879DBE1E75BD0400711103 /* reddift_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 30879DBD1E75BD0400711103 /* reddift_config.json */; };
 		30879DC01E75C90900711103 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30879DBF1E75C90900711103 /* UserViewController.swift */; };
 		30879DC41E75DC4600711103 /* reddift_config.json.example in Resources */ = {isa = PBXBuildFile; fileRef = 30879DC31E75DC4600711103 /* reddift_config.json.example */; };
+		30879DC61E76289C00711103 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30879DC51E76289C00711103 /* MainViewController.swift */; };
+		30879DC81E76292E00711103 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30879DC71E76292E00711103 /* Session.swift */; };
 		30D1C53B1E6CF27700E518D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D1C53A1E6CF27700E518D8 /* AppDelegate.swift */; };
-		30D1C53D1E6CF27700E518D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D1C53C1E6CF27700E518D8 /* ViewController.swift */; };
 		30D1C5401E6CF27700E518D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D1C53E1E6CF27700E518D8 /* Main.storyboard */; };
 		30D1C5421E6CF27700E518D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D1C5411E6CF27700E518D8 /* Assets.xcassets */; };
 		30D1C5451E6CF27700E518D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D1C5431E6CF27700E518D8 /* LaunchScreen.storyboard */; };
@@ -39,9 +40,10 @@
 		30879DBD1E75BD0400711103 /* reddift_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reddift_config.json; sourceTree = "<group>"; };
 		30879DBF1E75C90900711103 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		30879DC31E75DC4600711103 /* reddift_config.json.example */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reddift_config.json.example; path = "not-reddit-src/reddift_config.json.example"; sourceTree = "<group>"; };
+		30879DC51E76289C00711103 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		30879DC71E76292E00711103 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		30D1C5371E6CF27700E518D8 /* not-reddit-src.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "not-reddit-src.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D1C53A1E6CF27700E518D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		30D1C53C1E6CF27700E518D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		30D1C53F1E6CF27700E518D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		30D1C5411E6CF27700E518D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30D1C5441E6CF27700E518D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -90,10 +92,11 @@
 		30D1C5391E6CF27700E518D8 /* not-reddit-src */ = {
 			isa = PBXGroup;
 			children = (
+				30879DC71E76292E00711103 /* Session.swift */,
 				30D1C53A1E6CF27700E518D8 /* AppDelegate.swift */,
-				30D1C53C1E6CF27700E518D8 /* ViewController.swift */,
 				30879DBD1E75BD0400711103 /* reddift_config.json */,
 				30D1C53E1E6CF27700E518D8 /* Main.storyboard */,
+				30879DC51E76289C00711103 /* MainViewController.swift */,
 				30879DBF1E75C90900711103 /* UserViewController.swift */,
 				30D1C5411E6CF27700E518D8 /* Assets.xcassets */,
 				30D1C5431E6CF27700E518D8 /* LaunchScreen.storyboard */,
@@ -177,9 +180,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30D1C53D1E6CF27700E518D8 /* ViewController.swift in Sources */,
+				30879DC81E76292E00711103 /* Session.swift in Sources */,
 				30879DC01E75C90900711103 /* UserViewController.swift in Sources */,
 				30D1C53B1E6CF27700E518D8 /* AppDelegate.swift in Sources */,
+				30879DC61E76289C00711103 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

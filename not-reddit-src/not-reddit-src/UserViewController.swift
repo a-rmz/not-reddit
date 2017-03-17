@@ -10,7 +10,8 @@ import UIKit
 import reddift
 
 class UserViewController: UIViewController {
-
+    
+    let session = NotSession.sharedSession.session
     var currentUser: Account? = nil
     
     @IBOutlet weak var labelCommentKarma: UILabel!
@@ -19,7 +20,7 @@ class UserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
+        
         loadAccount()
     }
     
@@ -28,17 +29,12 @@ class UserViewController: UIViewController {
     }
     
     func loadAccount() {
-        let names: [String] = OAuth2TokenRepository.savedNames
-        if names.count > 0, let token: OAuth2Token = try? OAuth2TokenRepository.token(of: names[0]) {
-            let session: Session = Session(token: token)
-            
-            try! session.getProfile({ (resultAccount: Result<Account>) in
-                self.currentUser = resultAccount.value!
+        try! session?.getProfile({ (resultAccount: Result<Account>) in
+            self.currentUser = resultAccount.value!
                 
-                self.labelCommentKarma.text = String(self.currentUser!.commentKarma)
-                self.labelLinkKarma.text = String(self.currentUser!.linkKarma)
-            })
-        }
+            self.labelCommentKarma.text = String(self.currentUser!.commentKarma)
+            self.labelLinkKarma.text = String(self.currentUser!.linkKarma)
+        })
     }
 
     override func didReceiveMemoryWarning() {
