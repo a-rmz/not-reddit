@@ -14,9 +14,19 @@ class MainViewController: UIViewController {
     let session = NotSession.sharedSession.session
     
     @IBOutlet weak var tableViewPost: PostTableView!
+    @IBOutlet weak var buttonMenu: UIBarButtonItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if revealViewController() != nil {
+            buttonMenu.target = self.revealViewController()
+            buttonMenu.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(revealViewController().tapGestureRecognizer())
+        }
+
         // Do any additional setup after loading the view.
     }
 
