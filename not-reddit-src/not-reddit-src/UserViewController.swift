@@ -29,12 +29,16 @@ class UserViewController: UIViewController {
     }
     
     func loadAccount() {
-        try! session?.getProfile({ (resultAccount: Result<Account>) in
-            self.currentUser = resultAccount.value!
+        do {
+           try session?.getProfile({ (resultAccount: Result<Account>) in
+                self.currentUser = resultAccount.value
                 
-            self.labelCommentKarma.text = String(self.currentUser!.commentKarma)
-            self.labelLinkKarma.text = String(self.currentUser!.linkKarma)
-        })
+                self.labelCommentKarma.text = String(describing: self.currentUser?.commentKarma)
+                self.labelLinkKarma.text = String(describing: self.currentUser?.linkKarma)
+            })
+        } catch {
+            print("no account")
+        }
     }
 
     override func didReceiveMemoryWarning() {

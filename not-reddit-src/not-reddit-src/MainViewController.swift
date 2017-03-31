@@ -12,12 +12,12 @@ import reddift
 class MainViewController: UIViewController {
     
     let session = NotSession.sharedSession.session
-
+    
+    @IBOutlet weak var tableViewPost: PostTableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        
     }
 
     override func didReceiveMemoryWarning() {

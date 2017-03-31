@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,13 +22,111 @@
                     <view key="view" contentMode="scaleToFill" id="EiE-0N-9hm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="297" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EAN-YK-AZY" customClass="PostTableView" customModule="not_reddit_src" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="297" id="Fee-t9-tHO" customClass="PostTableViewCell" customModule="not_reddit_src" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="297"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="Fee-t9-tHO" id="4Sn-BI-9HS">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="296"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-9l-yyn">
+                                                    <rect key="frame" x="20" y="211" width="335" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5G-yb-xzI">
+                                                    <rect key="frame" x="267" y="262" width="24" height="24"/>
+                                                    <color key="tintColor" red="0.50458139712103123" green="0.50957725253807107" blue="0.50957725253807107" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="ic_keyboard_arrow_up"/>
+                                                    <connections>
+                                                        <action selector="actionVote:" destination="Fee-t9-tHO" eventType="touchUpInside" id="QbD-gA-GjM"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fw5-B4-Uil">
+                                                    <rect key="frame" x="299" y="262" width="24" height="24"/>
+                                                    <color key="tintColor" red="0.50458139712103123" green="0.50957725253807107" blue="0.50957725253807107" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="ic_keyboard_arrow_down"/>
+                                                    <connections>
+                                                        <action selector="actionVote:" destination="Fee-t9-tHO" eventType="touchUpInside" id="2kA-Yh-ABC"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User · n hours ago · /r/sub" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ya-xf-rcP">
+                                                    <rect key="frame" x="20" y="240" width="335" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Yct-Gj-JgT">
+                                                    <rect key="frame" x="-0.5" y="3" width="375" height="198"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="198" id="Sht-xp-4r9"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3b9-Yw-A8q">
+                                                    <rect key="frame" x="331" y="262" width="24" height="24"/>
+                                                    <color key="tintColor" red="0.50458139712103123" green="0.50957725253807107" blue="0.50957725253807107" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="ic_stars">
+                                                        <color key="titleColor" red="0.12106497897382305" green="0.12226364213197971" blue="0.12226364213197971" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="actionVote:" destination="Fee-t9-tHO" eventType="touchUpInside" id="3k7-yy-IeA"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Fw5-B4-Uil" firstAttribute="width" secondItem="3b9-Yw-A8q" secondAttribute="width" id="2sP-et-VNl"/>
+                                                <constraint firstItem="Yct-Gj-JgT" firstAttribute="centerX" secondItem="BJZ-9l-yyn" secondAttribute="centerX" id="7pn-Rd-wKm"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="BJZ-9l-yyn" secondAttribute="bottom" constant="56" id="9U4-JM-qQG"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="3b9-Yw-A8q" secondAttribute="bottom" constant="2" id="BOz-9Z-Bas"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="1ya-xf-rcP" secondAttribute="trailing" constant="12" id="Egb-ek-UFe"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3b9-Yw-A8q" secondAttribute="trailing" constant="12" id="Fzj-La-2WD"/>
+                                                <constraint firstItem="Yct-Gj-JgT" firstAttribute="top" secondItem="4Sn-BI-9HS" secondAttribute="topMargin" constant="-5" id="LPU-Vb-FX1"/>
+                                                <constraint firstItem="Fw5-B4-Uil" firstAttribute="width" secondItem="3b9-Yw-A8q" secondAttribute="height" multiplier="1:1" id="OiH-Jm-Tei"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="H5G-yb-xzI" secondAttribute="bottom" constant="2" id="P2K-mj-Oaa"/>
+                                                <constraint firstItem="3b9-Yw-A8q" firstAttribute="leading" secondItem="Fw5-B4-Uil" secondAttribute="trailing" constant="8" id="QtK-kC-enF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="BJZ-9l-yyn" secondAttribute="trailing" constant="12" id="VCE-ga-gSe"/>
+                                                <constraint firstItem="H5G-yb-xzI" firstAttribute="width" secondItem="Fw5-B4-Uil" secondAttribute="height" multiplier="1:1" id="b3X-ho-8jM"/>
+                                                <constraint firstItem="BJZ-9l-yyn" firstAttribute="leading" secondItem="4Sn-BI-9HS" secondAttribute="leadingMargin" constant="12" id="cl6-KT-e6l"/>
+                                                <constraint firstItem="H5G-yb-xzI" firstAttribute="width" secondItem="Fw5-B4-Uil" secondAttribute="width" id="gJr-Gp-aaO"/>
+                                                <constraint firstItem="Fw5-B4-Uil" firstAttribute="leading" secondItem="H5G-yb-xzI" secondAttribute="trailing" constant="8" id="mZ0-Ic-iWV"/>
+                                                <constraint firstItem="1ya-xf-rcP" firstAttribute="leading" secondItem="4Sn-BI-9HS" secondAttribute="leadingMargin" constant="12" id="mek-oN-rM2"/>
+                                                <constraint firstItem="H5G-yb-xzI" firstAttribute="height" secondItem="Fw5-B4-Uil" secondAttribute="height" id="s1z-eV-eg9"/>
+                                                <constraint firstItem="Yct-Gj-JgT" firstAttribute="width" secondItem="4Sn-BI-9HS" secondAttribute="width" id="wJg-2S-uCs"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Fw5-B4-Uil" secondAttribute="bottom" constant="2" id="wXw-PA-gPa"/>
+                                                <constraint firstItem="3b9-Yw-A8q" firstAttribute="top" secondItem="1ya-xf-rcP" secondAttribute="bottom" constant="7.5" id="wtZ-8t-d0Q"/>
+                                                <constraint firstItem="Fw5-B4-Uil" firstAttribute="height" secondItem="3b9-Yw-A8q" secondAttribute="height" id="x6H-0r-9Kg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="buttonDown" destination="Fw5-B4-Uil" id="qDc-ww-W2u"/>
+                                            <outlet property="buttonUp" destination="H5G-yb-xzI" id="S7w-md-KwM"/>
+                                            <outlet property="labelOP" destination="1ya-xf-rcP" id="b6v-yg-tQW"/>
+                                            <outlet property="labelTitle" destination="BJZ-9l-yyn" id="2mn-FA-n4R"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EAN-YK-AZY" firstAttribute="top" secondItem="7jp-5S-aTw" secondAttribute="bottom" id="5pT-Kt-6Wx"/>
+                            <constraint firstItem="EAN-YK-AZY" firstAttribute="centerX" secondItem="EiE-0N-9hm" secondAttribute="centerX" id="8oQ-df-Gtn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EAN-YK-AZY" secondAttribute="trailing" constant="-16" id="nen-0n-ZXV"/>
+                            <constraint firstItem="EAN-YK-AZY" firstAttribute="bottom" secondItem="QP7-mj-hpZ" secondAttribute="top" id="ofj-Za-a8t"/>
+                            <constraint firstItem="EAN-YK-AZY" firstAttribute="leading" secondItem="EiE-0N-9hm" secondAttribute="leadingMargin" constant="-16" id="yWn-y1-Cvk"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="ic_home" selectedImage="ic_home" id="ZVJ-a6-TNa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5oW-XK-z10" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2190" y="-154"/>
+            <point key="canvasLocation" x="2176.8000000000002" y="-144.3778110944528"/>
         </scene>
         <!--User-->
         <scene sceneID="pjf-HW-ofJ">
@@ -119,5 +219,9 @@
     <resources>
         <image name="ic_account_circle" width="24" height="24"/>
         <image name="ic_home" width="24" height="24"/>
+        <image name="ic_keyboard_arrow_down" width="24" height="24"/>
+        <image name="ic_keyboard_arrow_up" width="24" height="24"/>
+        <image name="ic_stars" width="24" height="24"/>
+        <image name="placeholder" width="400" height="246"/>
     </resources>
 </document>

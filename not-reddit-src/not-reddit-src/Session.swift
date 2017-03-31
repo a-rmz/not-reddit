@@ -27,7 +27,7 @@ class NotSession {
             
             return session
         }
-        return nil
+        return Session()
     }
     
 }
