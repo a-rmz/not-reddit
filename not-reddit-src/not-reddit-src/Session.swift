@@ -17,6 +17,10 @@ class NotSession {
     var session: Session?
     
     init() {
+        refreshSession()
+    }
+    
+    public func refreshSession() {
         session = loadSession()
     }
     

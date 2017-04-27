@@ -11,7 +11,7 @@ import reddift
 
 class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
 
-    var source: [String] = ["Hi", "There"]
+    var source: [reddift.Link] = []
     let session: Session = NotSession.sharedSession.session!
     let paginator: Paginator = Paginator()
     
@@ -22,24 +22,24 @@ class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setDataSource() {
-//        let sub : Subreddit = Subreddit(subreddit: "birdsforscale")
-//        do {
-//            try session.getList(Paginator(), subreddit: sub, sort: .hot, timeFilterWithin: .day, completion: { (result: Result<Listing>) in
-//                let list = result.value
-//                let values = list?.children
-//                let links: [Link] = [Link(id: (values?.first?.id)!)]
-//                
-//                try? self.session.getLinksById(links, completion: { (result) -> Void in
-//                    switch result {
-//                    case .failure(let error):
-//                        print(error)
-//                    case .success(let listing):
-//                        listing.children.flatMap { $0 as? Link }.forEach { print($0.title) }
+        let sub : Subreddit = Subreddit(subreddit: "birdsforscale")
+        do {
+            try session.getList(Paginator(), subreddit: sub, sort: .hot, timeFilterWithin: .day, completion: { (result: Result<Listing>) in
+                
+                switch result {
+                case .success(let value):
+                    let children: [reddift.Link] = value.children as! [reddift.Link]
+                    self.source = children
+                    self.reloadData()
+//                    for child in children {
+//                        print (child.title)
 //                    }
-//                })
-//                
-//            })
-//        } catch { print(error) }
+                case .failure(let error):
+                    print(error)
+                }
+                
+            })
+        } catch { print(error) }
 
     }
     
@@ -50,7 +50,24 @@ class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostTableViewCell = dequeueReusableCell(withIdentifier: "postCell") as! PostTableViewCell
         cell.buttonUp.imageView!.tintColor = UIColor.orange
-        cell.labelTitle.text = "Hi"
+        
+        let link: reddift.Link = self.source[indexPath.row]
+        cell.labelTitle.text = link.title
+        print(link)
+        print("")
+        print("")
+        
+//        cell.imageView
+        let url = URL.init(string: link.thumbnail)
+        
+        // Async management of the images
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url!)
+            DispatchQueue.main.async {
+                cell.imageView!.image = UIImage(data: data!)
+            }
+        }
+
         return cell
     }
     

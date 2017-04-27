@@ -9,18 +9,18 @@
 import UIKit
 import reddift
 
-class UserViewController: UIViewController {
+class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let session = NotSession.sharedSession.session
     var currentUser: Account? = nil
     
-    @IBOutlet weak var labelCommentKarma: UILabel!
-    @IBOutlet weak var labelLinkKarma: UILabel!
-    
+    @IBOutlet weak var tableViewUser: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableViewUser.dataSource = self
+        tableViewUser.delegate = self
         loadAccount()
     }
     
@@ -32,11 +32,9 @@ class UserViewController: UIViewController {
         do {
            try session?.getProfile({ (resultAccount: Result<Account>) in
                 self.currentUser = resultAccount.value
-                
-                self.labelCommentKarma.text = String(describing: self.currentUser?.commentKarma)
-                self.labelLinkKarma.text = String(describing: self.currentUser?.linkKarma)
             })
         } catch {
+            try? OAuth2Authorizer.sharedInstance.challengeWithScopes(["mysubreddits", "identity"])
             print("no account")
         }
     }
@@ -44,6 +42,41 @@ class UserViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        default:
+            return 1
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UserTableViewCell = UserTableViewCell()
+        
+        do {
+            try session!.getProfile({ (resultAccount: Result<Account>) in
+                self.currentUser = resultAccount.value
+                
+                cell.setUserInfo(
+                    username: (self.currentUser?.name)!,
+                    age: (self.currentUser?.created)!,
+                    linkKarma: (self.currentUser?.linkKarma)!,
+                    commentKarma: (self.currentUser?.commentKarma)!
+                )
+                
+            })
+            return cell
+        } catch {
+            print("no account")
+        }
+        
+        return UITableViewCell()
     }
 
     

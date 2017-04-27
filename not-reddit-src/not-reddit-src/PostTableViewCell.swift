@@ -5,7 +5,7 @@
 //  Created by Alejandro Ramírez on 3/23/17.
 //  Copyright © 2017 Alejandro Ramírez. All rights reserved.
 //
-
+import reddift
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
