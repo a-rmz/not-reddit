@@ -8,6 +8,7 @@
 
 import UIKit
 import reddift
+import Foundation
 
 class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
 
@@ -53,24 +54,30 @@ class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         
         let link: reddift.Link = self.source[indexPath.row]
         cell.labelTitle.text = link.title
-        print(link)
+        cell.labelOP.text = "\(link.author) · \(tsToString(ts: link.created))· /r/\(link.subreddit)"
+    
+        //print(JSONStringify(value: link as AnyObject, prettyPrinted: true))
         print("")
         print("")
         
-//        cell.imageView
+
         let url = URL.init(string: link.thumbnail)
         
         // Async management of the images
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: url!)
             DispatchQueue.main.async {
-                cell.imageView!.image = UIImage(data: data!)
+                cell.imageViewThumb.image = UIImage(data: data!)
             }
         }
 
         return cell
     }
     
+    func tsToString(ts: Int) -> String {
+        return "some time ago"
+        
+    }
     
 
 }

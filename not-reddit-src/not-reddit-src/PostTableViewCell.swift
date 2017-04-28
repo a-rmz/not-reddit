@@ -14,6 +14,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonDown: UIButton!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelOP: UILabel!
+    @IBOutlet weak var imageViewThumb: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,6 +36,7 @@ class PostTableViewCell: UITableViewCell {
         default:
             break
         }
+        print("tap")
     }
     
     func upvote() {
