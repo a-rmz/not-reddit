@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 DispatchQueue.main.async(execute: { () -> Void in
                     try? OAuth2TokenRepository.save(token: token, of: token.name)
                 })
+                NotSession.sharedSession.refreshSession()
             }
         })
     }

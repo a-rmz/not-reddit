@@ -10,7 +10,7 @@ import UIKit
 import reddift
 import Foundation
 
-class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+class PostTableView: UITableView, UITableViewDelegate {
 
     var source: [reddift.Link] = []
     let session: Session = NotSession.sharedSession.session!
@@ -44,6 +44,16 @@ class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
 
     }
     
+    
+    func tsToString(ts: Int) -> String {
+        return "some time ago"
+        
+    }
+    
+}
+
+extension PostTableView : UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.source.count
     }
@@ -55,12 +65,12 @@ class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         let link: reddift.Link = self.source[indexPath.row]
         cell.labelTitle.text = link.title
         cell.labelOP.text = "\(link.author) · \(tsToString(ts: link.created))· /r/\(link.subreddit)"
-    
+        
         //print(JSONStringify(value: link as AnyObject, prettyPrinted: true))
         print("")
         print("")
         
-
+        
         let url = URL.init(string: link.thumbnail)
         
         // Async management of the images
@@ -70,14 +80,10 @@ class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
                 cell.imageViewThumb.image = UIImage(data: data!)
             }
         }
-
+        
         return cell
     }
     
-    func tsToString(ts: Int) -> String {
-        return "some time ago"
-        
-    }
-    
-
 }
+
+

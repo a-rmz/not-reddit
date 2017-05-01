@@ -158,7 +158,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="219" id="bpO-Ag-cu9" customClass="UserTableViewCell" customModule="not_reddit_src" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="user" rowHeight="219" id="bpO-Ag-cu9" customClass="UserTableViewCell" customModule="not_reddit_src" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="219"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="userCell" tableViewCell="bpO-Ag-cu9" id="RjN-Um-kMv">
@@ -237,6 +237,40 @@
                                             <outlet property="labelCommentKarma" destination="oJy-Kx-NoH" id="URY-fo-3QL"/>
                                             <outlet property="labelLinkKarma" destination="xrg-oR-LbP" id="r3v-Hg-kvv"/>
                                             <outlet property="labelUsername" destination="uuR-8j-5SH" id="S4n-1H-P2V"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nouser" rowHeight="219" id="GBV-hI-s8z" customClass="LoginTableViewCell" customModule="not_reddit_src" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="247" width="375" height="219"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="userCell" tableViewCell="GBV-hI-s8z" id="waj-54-uXl" customClass="LoginTableViewCell" customModule="not_reddit_src" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="218.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For some cool stats, please login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6B-rb-qvD">
+                                                    <rect key="frame" x="8" y="25" width="359" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wbx-qM-h8W">
+                                                    <rect key="frame" x="164" y="122" width="46" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Login"/>
+                                                    <connections>
+                                                        <action selector="actionLogin:" destination="GBV-hI-s8z" eventType="touchUpInside" id="KHJ-r3-uZj"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="n6B-rb-qvD" firstAttribute="top" secondItem="waj-54-uXl" secondAttribute="topMargin" constant="17" id="Let-xN-NUI"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="n6B-rb-qvD" secondAttribute="bottom" constant="142" id="Pfn-dZ-wSP"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="n6B-rb-qvD" secondAttribute="trailing" id="ct6-Qa-3Bw"/>
+                                                <constraint firstItem="n6B-rb-qvD" firstAttribute="centerX" secondItem="waj-54-uXl" secondAttribute="centerX" id="mVk-jP-PaQ"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="n6B-rb-qvD" secondAttribute="leading" id="uAV-d5-Km5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelUsername" destination="n6B-rb-qvD" id="oPm-na-cOl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
