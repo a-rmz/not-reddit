@@ -14,7 +14,10 @@ class PostTableView: UITableView, UITableViewDelegate {
 
     var source: [reddift.Link] = []
     let session: Session = NotSession.sharedSession.session!
-    let paginator: Paginator = Paginator()
+    
+    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    
     
     override func awakeFromNib() {
         self.delegate = self
@@ -23,7 +26,7 @@ class PostTableView: UITableView, UITableViewDelegate {
     }
     
     func setDataSource() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
         let sub : Subreddit = Subreddit(subreddit: appDelegate.subreddit)
         do {
             try session.getList(Paginator(), subreddit: sub, sort: .hot, timeFilterWithin: .day, completion: { (result: Result<Listing>) in
@@ -86,20 +89,14 @@ extension PostTableView : UITableViewDataSource {
                 
             }
         }
-<<<<<<< HEAD
         }
 
-        return cell
-    }
-    
-    func tsToString(ts: Int) -> String {
-        return "some time ago"
-=======
->>>>>>> 617ccb4a9a3f40295495889fb2b3856b98163d2d
         
         return cell
     }
     
 }
+
+
 
 

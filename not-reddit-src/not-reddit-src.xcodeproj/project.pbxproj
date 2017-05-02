@@ -14,13 +14,13 @@
 		3082BF9F1E845681005C08AA /* PostTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082BF9E1E845681005C08AA /* PostTableView.swift */; };
 		308514491E8EE254005B4F61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D1C53A1E6CF27700E518D8 /* AppDelegate.swift */; };
 		30879DB91E73843200711103 /* reddift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30879DB81E73843200711103 /* reddift.framework */; };
-		30879DBA1E7386BB00711103 /* reddift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30879DB81E73843200711103 /* reddift.framework */; };
 		30879DBB1E7386BB00711103 /* reddift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 30879DB81E73843200711103 /* reddift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		30879DC01E75C90900711103 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30879DBF1E75C90900711103 /* UserViewController.swift */; };
 		30879DC81E76292E00711103 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30879DC71E76292E00711103 /* Session.swift */; };
 		309461D91E8EE87000CA7734 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309461D81E8EE87000CA7734 /* MainViewController.swift */; };
 		309461DB1E8F0A6900CA7734 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309461DA1E8F0A6900CA7734 /* UserTableViewCell.swift */; };
 		30B9F8861EB7D2D000A2EA41 /* LoginTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9F8851EB7D2D000A2EA41 /* LoginTableViewCell.swift */; };
+		30B9F88A1EB7F1C800A2EA41 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9F8891EB7F1C800A2EA41 /* SearchViewController.swift */; };
 		30D1C5401E6CF27700E518D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D1C53E1E6CF27700E518D8 /* Main.storyboard */; };
 		30D1C5421E6CF27700E518D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D1C5411E6CF27700E518D8 /* Assets.xcassets */; };
 		30D1C5451E6CF27700E518D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D1C5431E6CF27700E518D8 /* LaunchScreen.storyboard */; };
@@ -54,6 +54,7 @@
 		309461D81E8EE87000CA7734 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		309461DA1E8F0A6900CA7734 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		30B9F8851EB7D2D000A2EA41 /* LoginTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableViewCell.swift; sourceTree = "<group>"; };
+		30B9F8891EB7F1C800A2EA41 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		30D1C5371E6CF27700E518D8 /* not-reddit-src.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "not-reddit-src.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D1C53A1E6CF27700E518D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30D1C53F1E6CF27700E518D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,7 +69,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				30879DB91E73843200711103 /* reddift.framework in Frameworks */,
-				30879DBA1E7386BB00711103 /* reddift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +128,7 @@
 				30D1C5461E6CF27700E518D8 /* Info.plist */,
 				2D37D7A71E84428600B165D2 /* MainMenuTableViewController.swift */,
 				2D37D7A91E84431200B165D2 /* SideMenuTableViewController.swift */,
+				30B9F8891EB7F1C800A2EA41 /* SearchViewController.swift */,
 			);
 			path = "not-reddit-src";
 			sourceTree = "<group>";
@@ -160,7 +161,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Alejandro Ramírez";
 				TargetAttributes = {
 					30D1C5361E6CF27700E518D8 = {
@@ -212,6 +213,7 @@
 				30879DC01E75C90900711103 /* UserViewController.swift in Sources */,
 				309461DB1E8F0A6900CA7734 /* UserTableViewCell.swift in Sources */,
 				3082BF9D1E845588005C08AA /* PostTableViewCell.swift in Sources */,
+				30B9F88A1EB7F1C800A2EA41 /* SearchViewController.swift in Sources */,
 				30B9F8861EB7D2D000A2EA41 /* LoginTableViewCell.swift in Sources */,
 				3082BF9F1E845681005C08AA /* PostTableView.swift in Sources */,
 				309461D91E8EE87000CA7734 /* MainViewController.swift in Sources */,
