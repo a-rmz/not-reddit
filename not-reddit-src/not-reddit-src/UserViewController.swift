@@ -12,31 +12,35 @@ import reddift
 class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let session = NotSession.sharedSession.session
-    var currentUser: Account? = nil
+    var currentUser: Account?
     
     @IBOutlet weak var tableViewUser: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadAccount()
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableViewUser.dataSource = self
         tableViewUser.delegate = self
-        loadAccount()
-    }
-    
-    @IBAction func actionLogin(_ sender: Any) {
-        try? OAuth2Authorizer.sharedInstance.challengeWithScopes(["mysubreddits", "identity"])
     }
     
     func loadAccount() {
-        do {
-           try session?.getProfile({ (resultAccount: Result<Account>) in
-                self.currentUser = resultAccount.value
-            })
-        } catch {
-            try? OAuth2Authorizer.sharedInstance.challengeWithScopes(["mysubreddits", "identity"])
-            print("no account")
-        }
+        try? session!.getProfile({
+            (result: Result<Account>) in
+            
+            switch result {
+            case .failure(_):
+                try? OAuth2Authorizer.sharedInstance.challengeWithScopes(["mysubreddits", "identity"])
+                
+            case .success(_):
+                print("yay")
+            }
+        })
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,26 +61,35 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UserTableViewCell = UserTableViewCell()
+        var loginCell: LoginTableViewCell = LoginTableViewCell()
+        var userCell: UserTableViewCell = UserTableViewCell()
+        var isUserCell: Bool = false
         
-        do {
-            try session!.getProfile({ (resultAccount: Result<Account>) in
-                self.currentUser = resultAccount.value
+        try? session!.getProfile({
+        (result: Result<Account>) in
                 
-                cell.setUserInfo(
-                    username: (self.currentUser?.name)!,
-                    age: (self.currentUser?.created)!,
-                    linkKarma: (self.currentUser?.linkKarma)!,
-                    commentKarma: (self.currentUser?.commentKarma)!
+            switch result {
+            case .failure(let error):
+                print(error)
+                
+            case .success(let account):
+                self.currentUser = account
+                userCell.setUserInfo(
+                    username: account.name,
+                    age: account.created,
+                    linkKarma: account.linkKarma,
+                    commentKarma: account.commentKarma
                 )
-                
-            })
-            return cell
-        } catch {
-            print("no account")
-        }
+                isUserCell = true
+            }
+        })
         
-        return UITableViewCell()
+        if isUserCell {
+            return userCell
+        } else {
+            print("heh")
+            return loginCell
+        }
     }
 
     
