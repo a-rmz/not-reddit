@@ -23,6 +23,6 @@ class LoginTableViewCell: UITableViewCell {
     }
 
     @IBAction func actionLogin(_ sender: Any) {
-        try? OAuth2Authorizer.sharedInstance.challengeWithScopes(["mysubreddits", "identity"])
+        try? OAuth2Authorizer.sharedInstance.challengeWithAllScopes()
     }
 }

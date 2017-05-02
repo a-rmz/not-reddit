@@ -19,7 +19,6 @@ class UserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        print("Awoke")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,5 +36,9 @@ class UserTableViewCell: UITableViewCell {
 
     func calculateAge(age: Int) -> String {
         return String(age)
+    }
+    
+    @IBAction func actionLogout(_ sender: Any) {
+        NotSession.sharedSession.logout()
     }
 }

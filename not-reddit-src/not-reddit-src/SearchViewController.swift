@@ -6,17 +6,25 @@
 //  Copyright © 2017 Alejandro Ramírez. All rights reserved.
 //
 
+import reddift
 import UIKit
 
 class SearchViewController: UIViewController {
+    
+    let session = NotSession.sharedSession.session
+    var source: [Subreddit] = []
+    
+    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
     @IBOutlet weak var resultsTableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        try? OAuth2Authorizer.sharedInstance.challengeWithAllScopes()
         configureSearchController()
+        configureDataSource()
+        configureDelegate()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,15 +45,64 @@ class SearchViewController: UIViewController {
 
 }
 
+extension SearchViewController: UITableViewDataSource {
+    
+    func configureDataSource() {
+        resultsTableView.dataSource = self
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath)
+        
+        cell.textLabel!.text = self.source[indexPath.row].displayName
+        cell.detailTextLabel!.text = String(self.source[indexPath.row].subscribers) + " subscribed"
+        
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.source.count
+    }
+}
+
+extension SearchViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(self.source[indexPath.row].displayName)
+        appDelegate.subreddit = self.source[indexPath.row].displayName
+        tabBarController!.selectedIndex = 1
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+}
+
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
+    func configureDelegate() {
+        resultsTableView.delegate = self
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
-        let searchString = searchController.searchBar.text
+        let searchString = searchController.searchBar.text!
         
-        print(searchString)
+        try? session?.getSubredditSearch(searchString, paginator: Paginator()) { (result: Result<Listing>) in
+            switch result {
+            case .success(let searchResult):
+                let subs: [Subreddit] = searchResult.children as! [Subreddit]
+                self.source = subs
+                for sub in subs { print(sub.displayName) }
+                self.source.sort { ($0.subscribers > $1.subscribers) }
+                self.resultsTableView.reloadData()
+                
+            case .failure(let err) :
+                print(err.localizedDescription)
+            }
+        }
         
-        
-        resultsTableView.reloadData()
     }
     
     
