@@ -16,7 +16,6 @@
 		30879DB91E73843200711103 /* reddift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30879DB81E73843200711103 /* reddift.framework */; };
 		30879DBA1E7386BB00711103 /* reddift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30879DB81E73843200711103 /* reddift.framework */; };
 		30879DBB1E7386BB00711103 /* reddift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 30879DB81E73843200711103 /* reddift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		30879DBE1E75BD0400711103 /* reddift_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 30879DBD1E75BD0400711103 /* reddift_config.json */; };
 		30879DC01E75C90900711103 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30879DBF1E75C90900711103 /* UserViewController.swift */; };
 		30879DC81E76292E00711103 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30879DC71E76292E00711103 /* Session.swift */; };
 		309461D91E8EE87000CA7734 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309461D81E8EE87000CA7734 /* MainViewController.swift */; };
@@ -49,7 +48,6 @@
 		3082BF9C1E845588005C08AA /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		3082BF9E1E845681005C08AA /* PostTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableView.swift; sourceTree = "<group>"; };
 		30879DB81E73843200711103 /* reddift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = reddift.framework; sourceTree = "<group>"; };
-		30879DBD1E75BD0400711103 /* reddift_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reddift_config.json; sourceTree = "<group>"; };
 		30879DBF1E75C90900711103 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		30879DC71E76292E00711103 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		309461D81E8EE87000CA7734 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				309461D81E8EE87000CA7734 /* MainViewController.swift */,
 				30879DC71E76292E00711103 /* Session.swift */,
 				30D1C53A1E6CF27700E518D8 /* AppDelegate.swift */,
-				30879DBD1E75BD0400711103 /* reddift_config.json */,
 				30D1C53E1E6CF27700E518D8 /* Main.storyboard */,
 				3082BF9C1E845588005C08AA /* PostTableViewCell.swift */,
 				3082BF9E1E845681005C08AA /* PostTableView.swift */,
@@ -195,7 +192,6 @@
 			files = (
 				30D1C5451E6CF27700E518D8 /* LaunchScreen.storyboard in Resources */,
 				30D1C5421E6CF27700E518D8 /* Assets.xcassets in Resources */,
-				30879DBE1E75BD0400711103 /* reddift_config.json in Resources */,
 				30D1C5401E6CF27700E518D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

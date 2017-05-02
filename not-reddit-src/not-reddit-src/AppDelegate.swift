@@ -11,6 +11,8 @@ import reddift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var subreddit:String = "birdsforScale"
 
     var window: UIWindow?
     

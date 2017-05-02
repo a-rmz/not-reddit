@@ -23,7 +23,8 @@ class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setDataSource() {
-        let sub : Subreddit = Subreddit(subreddit: "birdsforscale")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let sub : Subreddit = Subreddit(subreddit: appDelegate.subreddit)
         do {
             try session.getList(Paginator(), subreddit: sub, sort: .hot, timeFilterWithin: .day, completion: { (result: Result<Listing>) in
                 
@@ -64,11 +65,17 @@ class PostTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         let url = URL.init(string: link.thumbnail)
         
         // Async management of the images
+        if url != nil{
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: url!)
             DispatchQueue.main.async {
-                cell.imageViewThumb.image = UIImage(data: data!)
+                if data != nil{
+                
+                    cell.imageViewThumb.image = UIImage(data: data!)
+                }
+                
             }
+        }
         }
 
         return cell
