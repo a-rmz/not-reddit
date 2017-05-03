@@ -21,10 +21,12 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        try? OAuth2Authorizer.sharedInstance.challengeWithAllScopes()
+        
         configureSearchController()
         configureDataSource()
         configureDelegate()
+        source = []
+        resultsTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

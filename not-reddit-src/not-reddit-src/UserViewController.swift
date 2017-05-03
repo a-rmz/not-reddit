@@ -48,31 +48,6 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        var cell: UITableViewCell?
-        
-//        try? session!.getProfile({
-//        (result: Result<Account>) in
-//            print(result)
-//            switch result {
-//            case .failure(let error):
-//                cell = tableView.dequeueReusableCell(withIdentifier: "nouser", for: indexPath) as! LoginTableViewCell
-//                print(error)
-//                
-//            case .success(let account):
-//                self.currentUser = account
-//                cell = tableView.dequeueReusableCell(withIdentifier: "user", for: indexPath) as! UserTableViewCell
-//                
-//                let cellUser = cell as! UserTableViewCell
-//                
-//                cellUser.setUserInfo(
-//                    username: self.currentUser!.name,
-//                    age: self.currentUser!.created,
-//                    linkKarma: self.currentUser!.linkKarma,
-//                    commentKarma: self.currentUser!.commentKarma
-//                )
-//            }
-//        })
-        
         if currentUser != nil {
             let cell: UserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "user", for: indexPath) as! UserTableViewCell
 
