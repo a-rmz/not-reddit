@@ -31,6 +31,7 @@ class NotSession {
         if names.count > 0, let token: OAuth2Token = try? OAuth2TokenRepository.token(of: names[0]) {
             let session: Session = Session(token: token)
             
+            
             return session
         }
         return Session()

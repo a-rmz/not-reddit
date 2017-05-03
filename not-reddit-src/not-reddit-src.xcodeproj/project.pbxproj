@@ -24,6 +24,8 @@
 		30D1C5401E6CF27700E518D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D1C53E1E6CF27700E518D8 /* Main.storyboard */; };
 		30D1C5421E6CF27700E518D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D1C5411E6CF27700E518D8 /* Assets.xcassets */; };
 		30D1C5451E6CF27700E518D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D1C5431E6CF27700E518D8 /* LaunchScreen.storyboard */; };
+		A00B19011EB9740100A854CD /* reddift_config.json in Resources */ = {isa = PBXBuildFile; fileRef = A00B19001EB9740100A854CD /* reddift_config.json */; };
+		A069A70B1EB95C25002776A2 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069A70A1EB95C25002776A2 /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +63,8 @@
 		30D1C5411E6CF27700E518D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30D1C5441E6CF27700E518D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30D1C5461E6CF27700E518D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A00B19001EB9740100A854CD /* reddift_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reddift_config.json; sourceTree = "<group>"; };
+		A069A70A1EB95C25002776A2 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 				2D37D7A71E84428600B165D2 /* MainMenuTableViewController.swift */,
 				2D37D7A91E84431200B165D2 /* SideMenuTableViewController.swift */,
 				30B9F8891EB7F1C800A2EA41 /* SearchViewController.swift */,
+				A069A70A1EB95C25002776A2 /* PostViewController.swift */,
+				A00B19001EB9740100A854CD /* reddift_config.json */,
 			);
 			path = "not-reddit-src";
 			sourceTree = "<group>";
@@ -196,6 +202,7 @@
 			files = (
 				30D1C5451E6CF27700E518D8 /* LaunchScreen.storyboard in Resources */,
 				30D1C5421E6CF27700E518D8 /* Assets.xcassets in Resources */,
+				A00B19011EB9740100A854CD /* reddift_config.json in Resources */,
 				30D1C5401E6CF27700E518D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +217,7 @@
 				308514491E8EE254005B4F61 /* AppDelegate.swift in Sources */,
 				30879DC81E76292E00711103 /* Session.swift in Sources */,
 				2D37D7A81E84428600B165D2 /* MainMenuTableViewController.swift in Sources */,
+				A069A70B1EB95C25002776A2 /* PostViewController.swift in Sources */,
 				30879DC01E75C90900711103 /* UserViewController.swift in Sources */,
 				309461DB1E8F0A6900CA7734 /* UserTableViewCell.swift in Sources */,
 				3082BF9D1E845588005C08AA /* PostTableViewCell.swift in Sources */,

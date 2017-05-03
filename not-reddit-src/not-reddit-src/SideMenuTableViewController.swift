@@ -41,7 +41,10 @@ class SideMenuTableViewController: UITableViewController {
     
 
     override func viewDidLoad() {
+        self.table.dataSource = self
+        self.table.delegate = self
         setDataSource()
+        
         super.viewDidLoad()
         
         
@@ -60,6 +63,7 @@ class SideMenuTableViewController: UITableViewController {
             self.table.reloadRows(at: [ind as IndexPath], with: .automatic)
         }
         self.table.endUpdates()*/
+        self.table.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,26 +96,7 @@ class SideMenuTableViewController: UITableViewController {
                     let children: [reddift.Subreddit] = value.children as! [reddift.Subreddit]
                     self.source = children
                     print(self.source[0].title)
-                    self.cell1.textLabel?.text = self.source[0].url
-                    self.cell2.textLabel?.text = self.source[1].url
-                    self.cell3.textLabel?.text = self.source[2].url
-                    self.cell4.textLabel?.text = self.source[3].url
-                    self.cell5.textLabel?.text = self.source[4].url
-                    self.cell6.textLabel?.text = self.source[5].url
-                    self.cell7.textLabel?.text = self.source[6].url
-                    self.cell8.textLabel?.text = self.source[7].url
-                    self.cell9.textLabel?.text = self.source[8].url
-                    self.cell10.textLabel?.text = self.source[9].url
-                    self.cell11.textLabel?.text = self.source[10].url
-                    self.cell12.textLabel?.text = self.source[11].url
-                    self.cell13.textLabel?.text = self.source[12].url
-                    self.cell14.textLabel?.text = self.source[13].url
-                    self.cell15.textLabel?.text = self.source[14].url
-                    self.cell16.textLabel?.text = self.source[15].url
-                    self.cell17.textLabel?.text = self.source[16].url
-                    self.cell18.textLabel?.text = self.source[17].url
-                    self.cell19.textLabel?.text = self.source[18].url
-                    self.cell20.textLabel?.text = self.source[19].url
+                    
                     
                     self.table.reloadData()
                     
@@ -341,6 +326,15 @@ class SideMenuTableViewController: UITableViewController {
         
     }
     
+    
+    
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.source.count > 0 {
+            cell.textLabel?.text = self.source[indexPath.row].url
+        }
+        
+    }
     
     
     /*override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
