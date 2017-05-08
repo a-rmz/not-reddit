@@ -16,13 +16,10 @@ class PostTableView: UITableView, UITableViewDelegate {
     let session: Session = NotSession.sharedSession.session!
     
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    
-    
+
     override func awakeFromNib() {
         self.delegate = self
         self.dataSource = self
-        setDataSource()
     }
     
     func setDataSource() {
@@ -35,10 +32,9 @@ class PostTableView: UITableView, UITableViewDelegate {
                 case .success(let value):
                     let children: [reddift.Link] = value.children as! [reddift.Link]
                     self.source = children
-                    self.reloadData()
-//                    for child in children {
-//                        print (child.title)
-//                    }
+                    DispatchQueue.main.async {
+                        self.reloadData()
+                    }
                 case .failure(let error):
                     print(error)
                 }
@@ -70,25 +66,24 @@ extension PostTableView : UITableViewDataSource {
         cell.labelTitle.text = link.title
         cell.labelOP.text = "\(link.author) · \(tsToString(ts: link.created))· /r/\(link.subreddit)"
         
-        //print(JSONStringify(value: link as AnyObject, prettyPrinted: true))
-        print("")
-        print("")
+//        print(JSONStringify(value: link as AnyObject, prettyPrinted: true))
+//        print("")
+//        print("")
         
         
         let url = URL.init(string: link.thumbnail)
-        
+        cell.imageViewThumb.image = #imageLiteral(resourceName: "placeholder")
         // Async management of the images
         if url != nil{
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                if data != nil{
-                
-                    cell.imageViewThumb.image = UIImage(data: data!)
+            DispatchQueue.global().async {
+                let data = try? Data(contentsOf: url!)
+                DispatchQueue.main.async {
+                    if data != nil{
+                        cell.imageViewThumb.image = UIImage(data: data!)
+                    }
+                    
                 }
-                
             }
-        }
         }
 
         

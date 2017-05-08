@@ -98,10 +98,12 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
                 self.source = subs
                 for sub in subs { print(sub.displayName) }
                 self.source.sort { ($0.subscribers > $1.subscribers) }
-                self.resultsTableView.reloadData()
                 
             case .failure(let err) :
                 print(err.localizedDescription)
+            }
+            DispatchQueue.main.async {
+                self.resultsTableView.reloadData()
             }
         }
         
@@ -115,6 +117,8 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
         searchController.searchBar.placeholder = "Search the reddit!"
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
+        searchController.searchBar.enablesReturnKeyAutomatically = true
+        searchController.searchBar.returnKeyType = .search
         
         // Place the search bar view to the tableview headerview.
         resultsTableView.tableHeaderView = searchController.searchBar
