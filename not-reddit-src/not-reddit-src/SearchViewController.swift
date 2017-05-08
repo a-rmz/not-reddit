@@ -19,6 +19,16 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        source = []
+        resultsTableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        resetSearchBar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,6 +88,7 @@ extension SearchViewController: UITableViewDelegate {
         appDelegate.subreddit = self.source[indexPath.row].displayName
         tabBarController!.selectedIndex = 1
         navigationController?.popToRootViewController(animated: true)
+        searchController.searchBar.isHidden = true
     }
     
 }
@@ -109,7 +120,6 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
         
     }
     
-    
     func configureSearchController() {
         // Initialize and perform a minimum configuration to the search controller.
         searchController.searchResultsUpdater = self
@@ -122,5 +132,10 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
         
         // Place the search bar view to the tableview headerview.
         resultsTableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func resetSearchBar() {
+        searchController.searchBar.isHidden = false
+        searchController.searchBar.text = nil
     }
 }
