@@ -9,37 +9,58 @@
 import UIKit
 import reddift
 
-class UserViewController: UIViewController {
+class UserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let session = NotSession.sharedSession.session
-    var currentUser: Account? = nil
+    var currentUser: Account? = NotSession.sharedSession.currentUser
     
-    @IBOutlet weak var labelCommentKarma: UILabel!
-    @IBOutlet weak var labelLinkKarma: UILabel!
+    @IBOutlet weak var tableViewUser: UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        NotSession.sharedSession.refreshSession()
+        currentUser = NotSession.sharedSession.currentUser
+        tableViewUser.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadAccount()
-    }
-    
-    @IBAction func actionLogin(_ sender: Any) {
-        try? OAuth2Authorizer.sharedInstance.challengeWithScopes(["mysubreddits", "identity"])
-    }
-    
-    func loadAccount() {
-        try! session?.getProfile({ (resultAccount: Result<Account>) in
-            self.currentUser = resultAccount.value!
-                
-            self.labelCommentKarma.text = String(self.currentUser!.commentKarma)
-            self.labelLinkKarma.text = String(self.currentUser!.linkKarma)
-        })
+        tableViewUser.dataSource = self
+        tableViewUser.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        default:
+            return 1
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if currentUser != nil {
+            let cell: UserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "user", for: indexPath) as! UserTableViewCell
+
+            cell.setUserInfo(
+                username: self.currentUser!.name,
+                age: self.currentUser!.created,
+                linkKarma: self.currentUser!.linkKarma,
+                commentKarma: self.currentUser!.commentKarma
+            )
+            return cell
+        } else {
+            return tableView.dequeueReusableCell(withIdentifier: "nouser", for: indexPath) as! LoginTableViewCell
+        }
     }
 
     

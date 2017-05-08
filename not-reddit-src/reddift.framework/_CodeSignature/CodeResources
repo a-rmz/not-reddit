@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/reddift-Swift.h</key>
 		<data>
-		ho8FL4anmx+2UJbOKtl5XIBPYUk=
+		Ifs2sW7UsxcZ9l0aXg+yexxc1XM=
 		</data>
 		<key>Headers/reddift.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		1wjivW8nGxxFvye4ida8mutJS+o=
+		Ck0lzImQoLJfxa3btbTbro3nNoI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -22,11 +22,11 @@
 		</data>
 		<key>Modules/reddift.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		z24Z293pOUQ76AqX3cK6/+rA8Z8=
+		AOv//wqguM9ofmhu+fDT99GhYiA=
 		</data>
 		<key>Modules/reddift.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		0tAa5JjsMnfJ3NQ+wh0FLMR2kfA=
+		q4Fqjq+zkRWkMYMC//FMbWG64BM=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -35,11 +35,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ho8FL4anmx+2UJbOKtl5XIBPYUk=
+			Ifs2sW7UsxcZ9l0aXg+yexxc1XM=
 			</data>
 			<key>hash2</key>
 			<data>
-			D391TPy+SAiDULoxrl5XLILkDVhHtSMLxnPBPjn00tE=
+			92GhXir0ROxL2G1qkakYH/5xmDTGz0oyuShw3XeEQz0=
 			</data>
 		</dict>
 		<key>Headers/reddift.h</key>
@@ -68,22 +68,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			z24Z293pOUQ76AqX3cK6/+rA8Z8=
+			AOv//wqguM9ofmhu+fDT99GhYiA=
 			</data>
 			<key>hash2</key>
 			<data>
-			HBqsPiuuUjQDgh9GD+jTnZ4PpwVGtJIWbxkx+GiyE28=
+			Zt8JMNML49cKwtUSDAQmg0Ta6DIyoTmcLfLlziHhxFI=
 			</data>
 		</dict>
 		<key>Modules/reddift.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			0tAa5JjsMnfJ3NQ+wh0FLMR2kfA=
+			q4Fqjq+zkRWkMYMC//FMbWG64BM=
 			</data>
 			<key>hash2</key>
 			<data>
-			0yENPVy6AYobroMoagwQFADrRtWuAFUCaO6p7MDHjZs=
+			c7ZkdueVQ3WNb6j68Kx+dywsFq/UabwegOqMWsxGzLI=
 			</data>
 		</dict>
 	</dict>

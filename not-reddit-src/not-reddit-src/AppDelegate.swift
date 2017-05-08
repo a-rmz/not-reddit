@@ -11,7 +11,11 @@ import reddift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var subreddit:String = "birdsforScale"
 
+    var tokenUser: String = ""
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
@@ -21,8 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(error)
             case .success(let token):
                 DispatchQueue.main.async(execute: { () -> Void in
+                    self.tokenUser = token.name
                     try? OAuth2TokenRepository.save(token: token, of: token.name)
                 })
+                NotSession.sharedSession.refreshSession()
             }
         })
     }

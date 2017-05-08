@@ -12,12 +12,27 @@ import reddift
 class MainViewController: UIViewController {
     
     let session = NotSession.sharedSession.session
-
+    
+    @IBOutlet weak var tableViewPost: PostTableView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Refresh the data
+        tableViewPost.setDataSource()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(revealViewController().tapGestureRecognizer())
+        }
+
         // Do any additional setup after loading the view.
-        
     }
 
     override func didReceiveMemoryWarning() {

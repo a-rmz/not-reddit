@@ -15,9 +15,15 @@ class NotSession {
       */
     static let sharedSession = NotSession()
     var session: Session?
+    var currentUser: Account?
     
     init() {
+        refreshSession()
+    }
+    
+    public func refreshSession() {
         session = loadSession()
+        loadUser()
     }
     
     private func loadSession() -> Session? {
@@ -25,9 +31,31 @@ class NotSession {
         if names.count > 0, let token: OAuth2Token = try? OAuth2TokenRepository.token(of: names[0]) {
             let session: Session = Session(token: token)
             
+            
             return session
         }
-        return nil
+        return Session()
+    }
+    
+    private func loadUser() {
+        try? session!.getProfile({
+            (result: Result<Account>) in
+            print(result)
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+                
+            case .success(let account):
+                self.currentUser = account
+                print(self.currentUser)
+                print()
+            }
+        })
+
+    }
+    
+    public func logout() {
+        try? OAuth2TokenRepository.removeToken(of: (session?.token?.name)!)
     }
     
 }
