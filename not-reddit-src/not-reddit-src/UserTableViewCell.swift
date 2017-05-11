@@ -40,5 +40,6 @@ class UserTableViewCell: UITableViewCell {
     
     @IBAction func actionLogout(_ sender: Any) {
         NotSession.sharedSession.logout()
+        
     }
 }

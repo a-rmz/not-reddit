@@ -16,8 +16,10 @@ class NotSession {
     static let sharedSession = NotSession()
     var session: Session?
     var currentUser: Account?
+    var loggedIn: Bool
     
     init() {
+        loggedIn = false
         refreshSession()
     }
     
@@ -30,8 +32,6 @@ class NotSession {
         let names: [String] = OAuth2TokenRepository.savedNames
         if names.count > 0, let token: OAuth2Token = try? OAuth2TokenRepository.token(of: names[0]) {
             let session: Session = Session(token: token)
-            
-            
             return session
         }
         return Session()
@@ -47,15 +47,15 @@ class NotSession {
                 
             case .success(let account):
                 self.currentUser = account
-                print(self.currentUser)
-                print()
+                self.loggedIn = true
             }
         })
 
     }
     
     public func logout() {
-        try? OAuth2TokenRepository.removeToken(of: (session?.token?.name)!)
+        self.loggedIn = false
+        try? OAuth2TokenRepository.removeToken(of: session!.token!.name)
     }
     
 }

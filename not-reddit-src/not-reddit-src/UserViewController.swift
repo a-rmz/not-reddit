@@ -17,7 +17,6 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableViewUser: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
-        NotSession.sharedSession.refreshSession()
         currentUser = NotSession.sharedSession.currentUser
         tableViewUser.reloadData()
     }
@@ -47,8 +46,18 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if NotSession.sharedSession.loggedIn {
+            return 290
+        } else {
+            return 220
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if currentUser != nil {
+        NotSession.sharedSession.refreshSession()
+        currentUser = NotSession.sharedSession.currentUser
+        if NotSession.sharedSession.loggedIn {
             let cell: UserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "user", for: indexPath) as! UserTableViewCell
 
             cell.setUserInfo(
