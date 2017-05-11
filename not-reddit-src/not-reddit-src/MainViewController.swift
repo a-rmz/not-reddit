@@ -9,7 +9,7 @@
 import UIKit
 import reddift
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController,UITableViewDelegate {
     
     let session = NotSession.sharedSession.session
     
@@ -20,11 +20,14 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         // Refresh the data
         tableViewPost.setDataSource()
+        
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         if revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -40,6 +43,14 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func askLogin(){
+        let alert = UIAlertController(title: "Inicia sesiòn para acceder a esta funciòn", message: "Para poder acceder a las funcione de votar o guardar inica sesiòn en la pestaña de usuario", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) {
+            (action: UIAlertAction) in
+        }
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+    }
     
 
     /*
@@ -53,3 +64,5 @@ class MainViewController: UIViewController {
     */
 
 }
+
+

@@ -8,16 +8,28 @@
 import reddift
 import UIKit
 
+protocol askForLogin {
+    func askForLogin()
+}
+
 class PostTableViewCell: UITableViewCell {
+    
+    var delegate: askForLogin!
 
     @IBOutlet weak var buttonUp: UIButton!
+    
     @IBOutlet weak var buttonDown: UIButton!
+   
     @IBOutlet weak var labelTitle: UILabel!
-    @IBOutlet weak var labelOP: UILabel!
+    
+    @IBOutlet weak var labelOp: UILabel!
+    
     @IBOutlet weak var imageViewThumb: UIImageView!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        print("holo")
         // Initialization code
     }
 
@@ -27,7 +39,11 @@ class PostTableViewCell: UITableViewCell {
 //        // Configure the view for the selected state
 //    }
 
+   
+   
     @IBAction func actionVote(_ sender: UIButton) {
+        
+        
         switch sender.tag {
         case 1:
             upvote()
@@ -36,11 +52,24 @@ class PostTableViewCell: UITableViewCell {
         default:
             break
         }
-        print("tap")
+        
     }
     
     func upvote() {
-        buttonUp.imageView?.tintColor = UIColor.red
+       
+        print("tap")
+        let user = NotSession.sharedSession.currentUser
+        if user == nil {
+            print("tap")
+            self.delegate.askForLogin()
+            
+            
+            
+            
+        }else {
+           buttonUp.imageView?.tintColor = UIColor.red
+        }
+        
     }
     
     func downvote() {
