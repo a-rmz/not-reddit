@@ -10,17 +10,30 @@ import UIKit
 import reddift
 import Foundation
 
-class PostTableView: UITableView, UITableViewDelegate {
 
+class PostTableView: UITableViewController, askForLogin  {
+    
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.setDataSource()
+    }
+    
+    override func viewDidLoad() {
+        if revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(revealViewController().tapGestureRecognizer())
+        }
+    }
+    
     var source: [reddift.Link] = []
     let session: Session = NotSession.sharedSession.session!
     
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
-    override func awakeFromNib() {
-        self.delegate = self
-        self.dataSource = self
-    }
+    
     
     func setDataSource() {
 
@@ -33,7 +46,7 @@ class PostTableView: UITableView, UITableViewDelegate {
                     let children: [reddift.Link] = value.children as! [reddift.Link]
                     self.source = children
                     DispatchQueue.main.async {
-                        self.reloadData()
+                        self.tableView.reloadData()
                     }
                 case .failure(let error):
                     print(error)
@@ -50,28 +63,48 @@ class PostTableView: UITableView, UITableViewDelegate {
         
     }
     
-}
-
-extension PostTableView : UITableViewDataSource {
+    func askForLogin() {
+        print("entro 1")
+        
+        let alert = UIAlertController(title: "Inicia sesión para acceder a esta función", message: "Para poder acceder a las funciones de votar o guardar inicia sesión en la pestaña de usuario", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) {
+            (action: UIAlertAction) in
+        }
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+
+
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 297
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.source.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: PostTableViewCell = dequeueReusableCell(withIdentifier: "postCell") as! PostTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell: PostTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "postCell") as! PostTableViewCell
+        cell.delegate = self
         cell.buttonUp.imageView!.tintColor = UIColor.orange
         
         let link: reddift.Link = self.source[indexPath.row]
         cell.labelTitle.text = link.title
-        cell.labelOP.text = "\(link.author) · \(tsToString(ts: link.created))· /r/\(link.subreddit)"
+        cell.labelOp.text = "\(link.author) · \(tsToString(ts: link.created))· /r/\(link.subreddit)"
         
 //        print(JSONStringify(value: link as AnyObject, prettyPrinted: true))
 //        print("")
 //        print("")
         
         
+        
         let url = URL.init(string: link.thumbnail)
+        cell.imageViewThumb.layer.cornerRadius = 10
         cell.imageViewThumb.image = #imageLiteral(resourceName: "placeholder")
         // Async management of the images
         if url != nil{
@@ -91,6 +124,7 @@ extension PostTableView : UITableViewDataSource {
     }
     
 }
+
 
 
 

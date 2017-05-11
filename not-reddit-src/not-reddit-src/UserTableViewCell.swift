@@ -15,15 +15,19 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var labelLinkKarma: UILabel!
     @IBOutlet weak var labelCommentKarma: UILabel!
 
+    @IBOutlet weak var logoutButtin: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.logoutButtin.isHidden = false
+    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+        
         // Configure the view for the selected state
     }
     
