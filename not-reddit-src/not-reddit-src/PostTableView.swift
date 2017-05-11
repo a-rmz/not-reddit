@@ -66,7 +66,7 @@ class PostTableView: UITableViewController, askForLogin  {
     func askForLogin() {
         print("entro 1")
         
-        let alert = UIAlertController(title: "Inicia sesiòn para acceder a esta funciòn", message: "Para poder acceder a las funcione de votar o guardar inica sesiòn en la pestaña de usuario", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Inicia sesión para acceder a esta función", message: "Para poder acceder a las funciones de votar o guardar inicia sesión en la pestaña de usuario", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) {
             (action: UIAlertAction) in
         }
