@@ -12,7 +12,7 @@ import reddift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var subreddit:String = "birdsforScale"
+    var subreddit: String = "birdsforScale"
 
     var tokenUser: String = ""
     

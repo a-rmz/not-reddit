@@ -86,19 +86,50 @@ class SideMenuTableViewController: UITableViewController {
     func setDataSource() {
         //let sub : Subreddit = Subreddit(subreddit: "birdsforscale")
         
-        
-        
-        do {
+            if NotSession.sharedSession.currentUser != nil {
+                do {
+                    print("my subreddits")
+                
+                try session.getUserRelatedSubreddit(.subscriber, paginator: paginator, completion: { (result: Result<Listing>) in
+                    switch result {
+                    case .success(let value):
+                        let children: [reddift.Subreddit] = value.children as! [reddift.Subreddit]
+                        self.source = children
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                        
+                        print(self.source[0].title)
+                        
+                        
+                        
+                        
+                        
+                    case .failure(let error):
+                        print(error)
+                    }
+                })
+                }catch { print(error)}
+                
+                
+                
+            }else {
+            
+                do {
+            
             try session.getSubreddit(SubredditsWhere.default, paginator: paginator, completion: { (result: Result<Listing>) in
                 
                 switch result {
                 case .success(let value):
                     let children: [reddift.Subreddit] = value.children as! [reddift.Subreddit]
                     self.source = children
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
                     print(self.source[0].title)
                     
                     
-                    self.table.reloadData()
                     
                     
                     
@@ -110,7 +141,7 @@ class SideMenuTableViewController: UITableViewController {
             })
         }catch { print(error)}
         
-       
+        }
         
         
     }

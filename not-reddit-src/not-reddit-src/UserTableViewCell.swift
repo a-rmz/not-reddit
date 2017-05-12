@@ -31,14 +31,23 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func setUserInfo(username: String, age: Int, linkKarma: Int, commentKarma: Int) {
+        
+        
         self.labelUsername.text = username
-        self.labelAge.text = calculateAge(age: age)
+        self.labelAge.text = "Member since: \(calculateAge(age: age))"
         self.labelLinkKarma.text = String(linkKarma)
         self.labelCommentKarma.text = String(commentKarma)
     }
 
     func calculateAge(age: Int) -> String {
-        return String(age)
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "dd-MMM-yyyy"
+        
+        let birth = NSDate.init(timeIntervalSince1970: TimeInterval.init(age))
+        let myBirth = formatter.string(from: birth as Date)
+
+        return myBirth
     }
     
     @IBAction func actionLogout(_ sender: Any) {

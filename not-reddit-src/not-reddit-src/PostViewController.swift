@@ -12,7 +12,7 @@ import Foundation
 
 class PostViewController: UIViewController {
     
-    var source: [reddift.Link] = []
+    var source: [Subreddit] = []
     let session: Session = NotSession.sharedSession.session!
     
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -79,7 +79,8 @@ class PostViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let response):
-                
+               let child = response.children as! [Subreddit]
+                self.source = child
                 print("Hi")
             }
         })
