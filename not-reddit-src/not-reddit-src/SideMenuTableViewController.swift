@@ -99,12 +99,6 @@ class SideMenuTableViewController: UITableViewController {
                             self.tableView.reloadData()
                         }
                         
-                        print(self.source[0].title)
-                        
-                        
-                        
-                        
-                        
                     case .failure(let error):
                         print(error)
                     }

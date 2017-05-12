@@ -54,18 +54,14 @@ class PostTableViewCell: UITableViewCell {
            
             
             if self.saveButton.imageView?.backgroundColor != UIColor.yellow {
-                try? session.setSave(true, name: self.name, completion: { (result: Result<JSONAny>
-                    ) in
-                    print(result)
-                    
+                try? session.setSave(true, name: self.name, completion: { (result: Result<JSONAny>) in
                     self.saveButton.imageView?.backgroundColor = UIColor.yellow
                     self.delegate.reload()
                 
                 })
                 
             }else {
-                try? session.setSave(false, name: self.name, completion: { (result: Result<JSONAny>
-                    ) in
+                try? session.setSave(false, name: self.name, completion: { (result: Result<JSONAny>) in
                     
                     self.saveButton.imageView?.backgroundColor = UIColor.white
                     self.delegate.reload()

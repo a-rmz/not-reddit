@@ -175,20 +175,18 @@ class PostTableView: UITableViewController, askForLogin  {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print(self.source[indexPath.row].url)
-        
-            self.urlActual = NSURL.init(string: self.source[indexPath.row].url)!
-            
-            performSegue(withIdentifier: "webSegue", sender: self)
-        
-        
+        self.urlActual = NSURL.init(string: self.source[indexPath.row].url)!
+        performSegue(withIdentifier: "webSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "webSegue" {
             let vc = segue.destination as! WebViewController
             vc.url = self.urlActual
+        } else if segue.identifier == "postSegue" {
+            if NotSession.sharedSession.currentUser == nil {
+                askForLogin()
+            }
         }
     }
     
