@@ -26,10 +26,10 @@ class PostTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imageViewThumb: UIImageView!
 
+    @IBOutlet weak var constraintImageHeight: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("holo")
         // Initialization code
     }
 
@@ -56,23 +56,19 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func upvote() {
-       
-        print("tap")
-        let user = NotSession.sharedSession.currentUser
-        if user == nil {
-            print("tap")
+        if NotSession.sharedSession.currentUser == nil {
             self.delegate.askForLogin()
-            
-            
-            
-            
-        }else {
+        } else {
            buttonUp.imageView?.tintColor = UIColor.red
         }
         
     }
     
     func downvote() {
-        
+        if NotSession.sharedSession.currentUser == nil {
+            self.delegate.askForLogin()
+        } else {
+            buttonUp.imageView?.tintColor = UIColor.red
+        }
     }
 }
