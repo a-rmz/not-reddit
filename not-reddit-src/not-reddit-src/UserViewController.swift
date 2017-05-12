@@ -50,7 +50,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         if NotSession.sharedSession.loggedIn {
             return 290
         } else {
-            return 220
+            return 290
         }
     }
     
@@ -59,7 +59,8 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         currentUser = NotSession.sharedSession.currentUser
         if NotSession.sharedSession.loggedIn {
             let cell: UserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "user", for: indexPath) as! UserTableViewCell
-
+            
+            
             cell.setUserInfo(
                 username: self.currentUser!.name,
                 age: self.currentUser!.created,
@@ -70,6 +71,7 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             return tableView.dequeueReusableCell(withIdentifier: "nouser", for: indexPath) as! LoginTableViewCell
         }
+        
     }
 
     

@@ -95,10 +95,13 @@ class SideMenuTableViewController: UITableViewController {
                 case .success(let value):
                     let children: [reddift.Subreddit] = value.children as! [reddift.Subreddit]
                     self.source = children
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    
                     print(self.source[0].title)
                     
                     
-                    self.table.reloadData()
                     
                     
                     

@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="297"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fzF-ws-SdS" id="IzV-gz-0fw">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="296.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="297"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Buy-w5-hqg">
@@ -330,33 +330,29 @@
                                             <outlet property="logoutButtin" destination="8ft-Yq-itP" id="tw1-2q-thC"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nouser" rowHeight="219" id="GBV-hI-s8z" customClass="LoginTableViewCell" customModule="not_reddit_src" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="318" width="375" height="219"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nouser" rowHeight="400" id="GBV-hI-s8z" customClass="LoginTableViewCell" customModule="not_reddit_src" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="318" width="375" height="400"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="usercell" tableViewCell="GBV-hI-s8z" id="waj-54-uXl" customClass="LoginTableViewCell" customModule="not_reddit_src" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="219"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For some cool stats, please login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6B-rb-qvD">
-                                                    <rect key="frame" x="50.5" y="45" width="274.5" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="For some cool stats, please login" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6B-rb-qvD">
+                                                    <rect key="frame" x="50" y="45" width="275" height="73"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wbx-qM-h8W">
-                                                    <rect key="frame" x="164" y="122" width="46" height="30"/>
+                                                <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wbx-qM-h8W">
+                                                    <rect key="frame" x="-2" y="1" width="375" height="400"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <state key="normal" title="Login"/>
                                                     <connections>
                                                         <action selector="actionLogin:" destination="GBV-hI-s8z" eventType="touchUpInside" id="KHJ-r3-uZj"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Wbx-qM-h8W" firstAttribute="top" secondItem="n6B-rb-qvD" secondAttribute="bottom" constant="53" id="95V-ct-vD2"/>
-                                                <constraint firstItem="n6B-rb-qvD" firstAttribute="top" secondItem="waj-54-uXl" secondAttribute="topMargin" constant="37" id="RZg-Pv-2an"/>
-                                                <constraint firstItem="n6B-rb-qvD" firstAttribute="centerX" secondItem="waj-54-uXl" secondAttribute="centerX" id="aVL-bV-85w"/>
-                                                <constraint firstItem="Wbx-qM-h8W" firstAttribute="centerX" secondItem="n6B-rb-qvD" secondAttribute="centerX" id="rqM-qo-Uqw"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>

@@ -59,7 +59,39 @@ class PostTableView: UITableViewController, askForLogin  {
     
     
     func tsToString(ts: Int) -> String {
-        return "some time ago"
+        
+        
+        let start = NSDate.init(timeIntervalSince1970: TimeInterval(ts))
+        
+        let end = NSDate()
+        
+        let calendar = NSCalendar.current
+        
+        
+        var datecomp = calendar.dateComponents(  [.year], from: start as Date, to: end as Date)
+        
+        if(datecomp.year!>0) {
+            return "\(datecomp.year!) years ago"
+        }
+        
+        
+        datecomp = calendar.dateComponents(  [.month], from: start as Date, to: end as Date)
+ 
+        
+        if(datecomp.month!>0) {
+            return "\(datecomp.month!) months ago"
+        }
+        
+        
+        datecomp = calendar.dateComponents(  [.day], from: start as Date, to: end as Date)
+        
+        if(datecomp.day!>0) {
+            return "\(datecomp.day!) days ago"
+        }
+        
+        datecomp = calendar.dateComponents(  [.hour], from: start as Date, to: end as Date)
+        
+        return "\(datecomp.hour!) hours ago"
         
     }
     
