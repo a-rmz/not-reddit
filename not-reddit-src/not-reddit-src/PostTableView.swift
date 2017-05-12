@@ -13,6 +13,8 @@ import Foundation
 
 class PostTableView: UITableViewController, askForLogin  {
     
+    var urlActual: NSURL = NSURL()
+    
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -124,6 +126,7 @@ class PostTableView: UITableViewController, askForLogin  {
         cell.labelTitle.text = link.title
         cell.labelOp.text = "\(link.author) · \(tsToString(ts: link.created))· /r/\(link.subreddit)"
         
+        
         let url = URL.init(string: link.thumbnail)
         cell.imageViewThumb.layer.cornerRadius = 3
         cell.imageViewThumb.image = #imageLiteral(resourceName: "placeholder")
@@ -145,6 +148,22 @@ class PostTableView: UITableViewController, askForLogin  {
 
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print(self.source[indexPath.row].url)
+        
+            self.urlActual = NSURL.init(string: self.source[indexPath.row].url)!
+            
+            performSegue(withIdentifier: "webSegue", sender: self)
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! WebViewController
+        vc.url = self.urlActual
     }
     
 }

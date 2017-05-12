@@ -26,6 +26,7 @@
 		30D1C5451E6CF27700E518D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D1C5431E6CF27700E518D8 /* LaunchScreen.storyboard */; };
 		A00B19011EB9740100A854CD /* reddift_config.json in Resources */ = {isa = PBXBuildFile; fileRef = A00B19001EB9740100A854CD /* reddift_config.json */; };
 		A02958F21EC4E05500A205F3 /* MainViewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02958F11EC4E05500A205F3 /* MainViewTableViewController.swift */; };
+		A02958F41EC5569B00A205F3 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02958F31EC5569B00A205F3 /* WebViewController.swift */; };
 		A069A70B1EB95C25002776A2 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069A70A1EB95C25002776A2 /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		30D1C5461E6CF27700E518D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A00B19001EB9740100A854CD /* reddift_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reddift_config.json; sourceTree = "<group>"; };
 		A02958F11EC4E05500A205F3 /* MainViewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewTableViewController.swift; sourceTree = "<group>"; };
+		A02958F31EC5569B00A205F3 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		A069A70A1EB95C25002776A2 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +126,7 @@
 				30879DC71E76292E00711103 /* Session.swift */,
 				30D1C53A1E6CF27700E518D8 /* AppDelegate.swift */,
 				30D1C53E1E6CF27700E518D8 /* Main.storyboard */,
+				A02958F31EC5569B00A205F3 /* WebViewController.swift */,
 				A02958F11EC4E05500A205F3 /* MainViewTableViewController.swift */,
 				3082BF9C1E845588005C08AA /* PostTableViewCell.swift */,
 				3082BF9E1E845681005C08AA /* PostTableView.swift */,
@@ -230,6 +233,7 @@
 				3082BF9F1E845681005C08AA /* PostTableView.swift in Sources */,
 				309461D91E8EE87000CA7734 /* MainViewController.swift in Sources */,
 				2D37D7A61E843ED100B165D2 /* SWRevealViewController.m in Sources */,
+				A02958F41EC5569B00A205F3 /* WebViewController.swift in Sources */,
 				2D37D7AA1E84431200B165D2 /* SideMenuTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
