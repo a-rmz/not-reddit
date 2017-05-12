@@ -27,6 +27,9 @@
 		A00B19011EB9740100A854CD /* reddift_config.json in Resources */ = {isa = PBXBuildFile; fileRef = A00B19001EB9740100A854CD /* reddift_config.json */; };
 		A02958F21EC4E05500A205F3 /* MainViewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02958F11EC4E05500A205F3 /* MainViewTableViewController.swift */; };
 		A02958F41EC5569B00A205F3 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02958F31EC5569B00A205F3 /* WebViewController.swift */; };
+		A02958F61EC58D4A00A205F3 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02958F51EC58D4A00A205F3 /* FavoritesTableViewController.swift */; };
+		A02958F81EC5910300A205F3 /* SaveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02958F71EC5910300A205F3 /* SaveTableViewCell.swift */; };
+		A02958FA1EC597FE00A205F3 /* Web2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02958F91EC597FE00A205F3 /* Web2ViewController.swift */; };
 		A069A70B1EB95C25002776A2 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A069A70A1EB95C25002776A2 /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,9 @@
 		A00B19001EB9740100A854CD /* reddift_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reddift_config.json; sourceTree = "<group>"; };
 		A02958F11EC4E05500A205F3 /* MainViewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewTableViewController.swift; sourceTree = "<group>"; };
 		A02958F31EC5569B00A205F3 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		A02958F51EC58D4A00A205F3 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		A02958F71EC5910300A205F3 /* SaveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveTableViewCell.swift; sourceTree = "<group>"; };
+		A02958F91EC597FE00A205F3 /* Web2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Web2ViewController.swift; sourceTree = "<group>"; };
 		A069A70A1EB95C25002776A2 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +110,7 @@
 		30D1C52E1E6CF27700E518D8 = {
 			isa = PBXGroup;
 			children = (
+				A02958F51EC58D4A00A205F3 /* FavoritesTableViewController.swift */,
 				2D37D7A21E843EB500B165D2 /* SWRevealView */,
 				30D1C5391E6CF27700E518D8 /* not-reddit-src */,
 				30D1C5381E6CF27700E518D8 /* Products */,
@@ -126,6 +133,8 @@
 				30879DC71E76292E00711103 /* Session.swift */,
 				30D1C53A1E6CF27700E518D8 /* AppDelegate.swift */,
 				30D1C53E1E6CF27700E518D8 /* Main.storyboard */,
+				A02958F91EC597FE00A205F3 /* Web2ViewController.swift */,
+				A02958F71EC5910300A205F3 /* SaveTableViewCell.swift */,
 				A02958F31EC5569B00A205F3 /* WebViewController.swift */,
 				A02958F11EC4E05500A205F3 /* MainViewTableViewController.swift */,
 				3082BF9C1E845588005C08AA /* PostTableViewCell.swift */,
@@ -223,6 +232,8 @@
 				308514491E8EE254005B4F61 /* AppDelegate.swift in Sources */,
 				30879DC81E76292E00711103 /* Session.swift in Sources */,
 				2D37D7A81E84428600B165D2 /* MainMenuTableViewController.swift in Sources */,
+				A02958F61EC58D4A00A205F3 /* FavoritesTableViewController.swift in Sources */,
+				A02958FA1EC597FE00A205F3 /* Web2ViewController.swift in Sources */,
 				A02958F21EC4E05500A205F3 /* MainViewTableViewController.swift in Sources */,
 				A069A70B1EB95C25002776A2 /* PostViewController.swift in Sources */,
 				30879DC01E75C90900711103 /* UserViewController.swift in Sources */,
@@ -235,6 +246,7 @@
 				2D37D7A61E843ED100B165D2 /* SWRevealViewController.m in Sources */,
 				A02958F41EC5569B00A205F3 /* WebViewController.swift in Sources */,
 				2D37D7AA1E84431200B165D2 /* SideMenuTableViewController.swift in Sources */,
+				A02958F81EC5910300A205F3 /* SaveTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,8 +1,8 @@
 //
-//  PostTableView.swift
+//  FavoritesTableViewController.swift
 //  not-reddit-src
 //
-//  Created by Alejandro Ramírez on 3/23/17.
+//  Created by Emiliano García García on 12/05/17.
 //  Copyright © 2017 Alejandro Ramírez. All rights reserved.
 //
 
@@ -10,56 +10,70 @@ import UIKit
 import reddift
 import Foundation
 
+class FavoritesTableViewController: UITableViewController, askForReload {
 
-class PostTableView: UITableViewController, askForLogin  {
+    var source: [reddift.Link] = []
     
     var urlActual: NSURL = NSURL()
     
-    @IBOutlet weak var menuButton: UIBarButtonItem!
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.setDataSource()
-    }
-    
-    override func viewDidLoad() {
-        if revealViewController() != nil {
-            menuButton.target = self.revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(revealViewController().panGestureRecognizer())
-            self.view.addGestureRecognizer(revealViewController().tapGestureRecognizer())
-        }
-    }
-    
-    var source: [reddift.Link] = []
     let session: Session = NotSession.sharedSession.session!
+    
     
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.setDataSource()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     
     func setDataSource() {
         
-
-        let sub : Subreddit = Subreddit(subreddit: appDelegate.subreddit)
+        
+        if NotSession.sharedSession.currentUser != nil{
+        
         do {
-            try session.getList(Paginator(), subreddit: sub, sort: .hot, timeFilterWithin: .month, completion: { (result: Result<Listing>) in
-                
+            try session.getUserContent((NotSession.sharedSession.currentUser?.name)!, content: .saved, sort: .new, timeFilterWithin: .all, paginator: Paginator()) { (result: Result<Listing>) in
                 switch result {
+                    
                 case .success(let value):
                     let children: [reddift.Link] = value.children as! [reddift.Link]
                     self.source = children
+                    print(self.source)
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
                 case .failure(let error):
                     print(error)
                 }
-                
-            })
+            }
         } catch { print(error) }
-
+            
+        }else {
+            let alert = UIAlertController(title: "Inicia sesión para acceder a esta función", message: "Para poder acceder a las funciones de votar o guardar inicia sesión en la pestaña de usuario", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default) {
+                (action: UIAlertAction) in
+            }
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
-    
     
     func tsToString(ts: Int) -> String {
         
@@ -79,7 +93,7 @@ class PostTableView: UITableViewController, askForLogin  {
         
         
         datecomp = calendar.dateComponents(  [.month], from: start as Date, to: end as Date)
- 
+        
         
         if(datecomp.month!>0) {
             return "\(datecomp.month!) months ago"
@@ -97,36 +111,36 @@ class PostTableView: UITableViewController, askForLogin  {
         return "\(datecomp.hour!) hours ago"
         
     }
-    
-    func askForLogin() {
-        let alert = UIAlertController(title: "Inicia sesión para acceder a esta función", message: "Para poder acceder a las funciones de votar o guardar inicia sesión en la pestaña de usuario", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) {
-            (action: UIAlertAction) in
-        }
-        alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
     }
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return self.source.count
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let link: reddift.Link = self.source[indexPath.row]
         
         return (link.thumbnail.characters.count > 0) ? 297 :80;
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.source.count
-    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: PostTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "postCell") as! PostTableViewCell
+        let cell: SaveTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "savecell") as! SaveTableViewCell
         cell.delegate = self
-    
+        
         
         
         let link: reddift.Link = self.source[indexPath.row]
         cell.labelTitle.text = link.title
-        cell.labelOp.text = "\(link.author) · \(tsToString(ts: link.created))· /r/\(link.subreddit)"
+        cell.labelOP.text = "\(link.author) · \(tsToString(ts: link.created))· /r/\(link.subreddit)"
         
         cell.name = link.name
         
@@ -137,37 +151,26 @@ class PostTableView: UITableViewController, askForLogin  {
         }
         
         
-        if link.likes == VoteDirection.up {
-            cell.buttonUp.imageView?.backgroundColor = UIColor.red
-            cell.buttonDown.imageView?.backgroundColor = UIColor.white
-        } else if link.likes == VoteDirection.down {
-            cell.buttonDown.backgroundColor = UIColor.blue
-            cell.buttonUp.backgroundColor = UIColor.white
-        } else {
-            cell.buttonDown.imageView?.backgroundColor = UIColor.white
-            cell.buttonUp.imageView?.backgroundColor = UIColor.white
-        }
-        
         
         let url = URL.init(string: link.thumbnail)
         cell.imageViewThumb.layer.cornerRadius = 3
         cell.imageViewThumb.image = #imageLiteral(resourceName: "placeholder")
-        cell.constraintImageHeight.constant = 0
-
+        
+        
         // Async management of the images
         if url != nil{
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url!)
                 DispatchQueue.main.async {
                     if data != nil{
-                        cell.constraintImageHeight.constant = 198
+                        
                         cell.imageViewThumb.image = UIImage(data: data!)
                         cell.layoutSubviews()
                     }
                 }
             }
         }
-
+        
         
         return cell
     }
@@ -176,27 +179,25 @@ class PostTableView: UITableViewController, askForLogin  {
         
         print(self.source[indexPath.row].url)
         
-            self.urlActual = NSURL.init(string: self.source[indexPath.row].url)!
-            
-            performSegue(withIdentifier: "webSegue", sender: self)
+        self.urlActual = NSURL.init(string: self.source[indexPath.row].url)!
+        
+        performSegue(withIdentifier: "webSegue2", sender: self)
         
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! WebViewController
+        let vc = segue.destination as! Web2ViewController
         vc.url = self.urlActual
     }
+    
     
     func reload() {
         DispatchQueue.main.async {
             self.setDataSource()
         }
     }
+
     
+
 }
-
-
-
-
-

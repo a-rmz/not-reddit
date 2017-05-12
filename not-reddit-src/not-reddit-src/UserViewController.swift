@@ -48,9 +48,9 @@ class UserViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if NotSession.sharedSession.loggedIn {
-            return 290
+            return 390
         } else {
-            return 290
+            return 390
         }
     }
     

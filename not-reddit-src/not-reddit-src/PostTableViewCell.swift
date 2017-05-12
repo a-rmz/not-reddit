@@ -47,6 +47,38 @@ class PostTableViewCell: UITableViewCell {
 //    }
 
    
+    @IBAction func savePost(_ sender: Any) {
+        if NotSession.sharedSession.currentUser == nil {
+            self.delegate.askForLogin()
+        } else {
+           
+            
+            if self.saveButton.imageView?.backgroundColor != UIColor.yellow {
+                try? session.setSave(true, name: self.name, completion: { (result: Result<JSONAny>
+                    ) in
+                    print(result)
+                    
+                    self.saveButton.imageView?.backgroundColor = UIColor.yellow
+                    self.delegate.reload()
+                
+                })
+                
+            }else {
+                try? session.setSave(false, name: self.name, completion: { (result: Result<JSONAny>
+                    ) in
+                    
+                    self.saveButton.imageView?.backgroundColor = UIColor.white
+                    self.delegate.reload()
+                    
+                })
+                
+            }
+            
+            
+            
+        }
+        
+    }
    
     @IBAction func actionVote(_ sender: UIButton) {
         
