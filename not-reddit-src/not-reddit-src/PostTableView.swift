@@ -64,23 +64,18 @@ class PostTableView: UITableViewController, askForLogin  {
     }
     
     func askForLogin() {
-        print("entro 1")
-        
         let alert = UIAlertController(title: "Inicia sesión para acceder a esta función", message: "Para poder acceder a las funciones de votar o guardar inicia sesión en la pestaña de usuario", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) {
             (action: UIAlertAction) in
         }
         alert.addAction(ok)
         self.present(alert, animated: true, completion: nil)
-        
     }
-    
-    
-
-
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 297
+        let link: reddift.Link = self.source[indexPath.row]
+        
+        return (link.thumbnail.characters.count > 0) ? 297 :80;
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,24 +92,21 @@ class PostTableView: UITableViewController, askForLogin  {
         cell.labelTitle.text = link.title
         cell.labelOp.text = "\(link.author) · \(tsToString(ts: link.created))· /r/\(link.subreddit)"
         
-//        print(JSONStringify(value: link as AnyObject, prettyPrinted: true))
-//        print("")
-//        print("")
-        
-        
-        
         let url = URL.init(string: link.thumbnail)
-        cell.imageViewThumb.layer.cornerRadius = 10
+        cell.imageViewThumb.layer.cornerRadius = 3
         cell.imageViewThumb.image = #imageLiteral(resourceName: "placeholder")
+        cell.constraintImageHeight.constant = 0
+
         // Async management of the images
         if url != nil{
             DispatchQueue.global().async {
                 let data = try? Data(contentsOf: url!)
                 DispatchQueue.main.async {
                     if data != nil{
+                        cell.constraintImageHeight.constant = 198
                         cell.imageViewThumb.image = UIImage(data: data!)
+                        cell.layoutSubviews()
                     }
-                    
                 }
             }
         }
