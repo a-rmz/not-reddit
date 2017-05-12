@@ -38,6 +38,7 @@ class PostTableView: UITableViewController, askForLogin  {
     
     
     func setDataSource() {
+        
 
         let sub : Subreddit = Subreddit(subreddit: appDelegate.subreddit)
         do {
@@ -120,11 +121,26 @@ class PostTableView: UITableViewController, askForLogin  {
         
         let cell: PostTableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "postCell") as! PostTableViewCell
         cell.delegate = self
-        cell.buttonUp.imageView!.tintColor = UIColor.orange
+    
+        
         
         let link: reddift.Link = self.source[indexPath.row]
         cell.labelTitle.text = link.title
         cell.labelOp.text = "\(link.author) · \(tsToString(ts: link.created))· /r/\(link.subreddit)"
+        
+        cell.name = link.name
+        
+        
+        if link.likes == VoteDirection.up {
+            cell.buttonUp.imageView?.backgroundColor = UIColor.red
+            cell.buttonDown.imageView?.backgroundColor = UIColor.white
+        } else if link.likes == VoteDirection.down {
+            cell.buttonDown.backgroundColor = UIColor.blue
+            cell.buttonUp.backgroundColor = UIColor.white
+        } else {
+            cell.buttonDown.imageView?.backgroundColor = UIColor.white
+            cell.buttonUp.imageView?.backgroundColor = UIColor.white
+        }
         
         
         let url = URL.init(string: link.thumbnail)
@@ -164,6 +180,12 @@ class PostTableView: UITableViewController, askForLogin  {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! WebViewController
         vc.url = self.urlActual
+    }
+    
+    func reload() {
+        DispatchQueue.main.async {
+            self.setDataSource()
+        }
     }
     
 }

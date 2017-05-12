@@ -89,6 +89,7 @@ class SideMenuTableViewController: UITableViewController {
         
         
         do {
+            
             try session.getSubreddit(SubredditsWhere.default, paginator: paginator, completion: { (result: Result<Listing>) in
                 
                 switch result {

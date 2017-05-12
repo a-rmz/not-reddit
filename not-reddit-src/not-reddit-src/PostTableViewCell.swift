@@ -10,11 +10,18 @@ import UIKit
 
 protocol askForLogin {
     func askForLogin()
+    func reload()
 }
 
 class PostTableViewCell: UITableViewCell {
     
+    let session: Session = NotSession.sharedSession.session!
+    
     var delegate: askForLogin!
+    
+    var name: String = String()
+    
+    @IBOutlet weak var saveButton: UIButton!
 
     @IBOutlet weak var buttonUp: UIButton!
     
@@ -59,8 +66,37 @@ class PostTableViewCell: UITableViewCell {
         if NotSession.sharedSession.currentUser == nil {
             self.delegate.askForLogin()
         } else {
-           buttonUp.imageView?.tintColor = UIColor.red
+            if self.buttonDown.imageView?.backgroundColor != UIColor.white {
+            
+            try? session.setVote(.up, name: self.name, completion: { (result: Result<JSONAny>
+                ) in
+                print("boton down encendido")
+                self.buttonUp.imageView?.backgroundColor = UIColor.red
+                self.buttonDown.imageView?.backgroundColor = UIColor.white
+                self.delegate.reload()
+            })
+                
+            }else if self.buttonUp.imageView?.backgroundColor != UIColor.red {
+                try? session.setVote(.up, name: self.name, completion: { (result: Result<JSONAny>
+                    ) in
+                    print("boton rojo no encendido")
+                    self.buttonUp.imageView?.backgroundColor = UIColor.red
+                    self.delegate.reload()
+                    
+                })
+                
+            }else {
+                try? session.setVote(.none, name: self.name, completion: { (result: Result<JSONAny>
+                    ) in
+                    print("boton rojo encendido")
+                    self.buttonUp.imageView?.backgroundColor = UIColor.white
+                    self.delegate.reload()
+                })
+            }
+            
+           
         }
+     
         
     }
     
@@ -68,7 +104,35 @@ class PostTableViewCell: UITableViewCell {
         if NotSession.sharedSession.currentUser == nil {
             self.delegate.askForLogin()
         } else {
-            buttonUp.imageView?.tintColor = UIColor.red
+            if self.buttonUp.imageView?.backgroundColor == UIColor.red{
+                
+                try? session.setVote(.down, name: self.name, completion: { (result: Result<JSONAny>
+                    ) in
+                    print("Boton rojo encendido")
+                    self.buttonDown.imageView?.backgroundColor = UIColor.blue
+                    self.buttonUp.imageView?.backgroundColor = UIColor.white
+                    self.delegate.reload()
+                })
+                
+            }else if self.buttonDown.imageView?.backgroundColor != UIColor.blue {
+                try? session.setVote(.down, name: self.name, completion: { (result: Result<JSONAny>
+                    ) in
+                    print("Boton azul no encendido")
+                    self.buttonDown.imageView?.backgroundColor = UIColor.blue
+                    self.delegate.reload()
+                })
+                
+            }else {
+                try? session.setVote(.none, name: self.name, completion: { (result: Result<JSONAny>
+                    ) in
+                    print("Boton azul encendido")
+                    self.buttonDown.imageView?.backgroundColor = UIColor.white
+                    self.delegate.reload()
+                })
+            }
+            
+            
         }
+        
     }
 }

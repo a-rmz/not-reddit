@@ -43,7 +43,7 @@
                                                 <action selector="actionVote:" destination="fzF-ws-SdS" eventType="touchUpInside" id="sUO-7e-4hb"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTe-et-1F6">
+                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTe-et-1F6">
                                             <rect key="frame" x="20" y="8" width="33.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -95,6 +95,7 @@
                                     <outlet property="imageViewThumb" destination="6lQ-1x-OMn" id="SQO-5x-2EF"/>
                                     <outlet property="labelOp" destination="J3F-BH-1Io" id="dLf-6J-q5A"/>
                                     <outlet property="labelTitle" destination="UTe-et-1F6" id="XiT-yh-cTv"/>
+                                    <outlet property="saveButton" destination="xvv-Yq-K9J" id="wK4-vX-feh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
