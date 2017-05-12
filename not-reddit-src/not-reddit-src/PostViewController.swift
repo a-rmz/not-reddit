@@ -17,44 +17,18 @@ class PostViewController: UIViewController {
     
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var selftextTextView: UITextView!
+    @IBOutlet weak var subPickerView: UIPickerView!
     @IBOutlet weak var captchaImage: UIImageView!
+    @IBOutlet weak var captchaTextField: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //session.submitText(<#T##subreddit: Subreddit##Subreddit#>, title: <#T##String#>, text: <#T##String#>, captcha: <#T##String#>, captchaIden: <#T##String#>, completion: <#T##(Result<JSONAny>) -> Void#>)
-        
-        try? session.getIdenForNewCAPTCHA({(result) -> Void in
-            switch result {
-            case .failure:
-                print(result.error?.description)
-            case .success:
-                if let string = result.value {
-                    try? self.session.getCAPTCHA(string, completion: {(result) -> Void in
-                        
-                        switch result {
-                        case .failure:
-                            print(result.error?.description)
-                        case .success:
-                            if let image:CAPTCHAImage = result.value {
-                                self.captchaImage.image = image
-                            }
-                            
-                        }
-                    
-                    })
-                }
-            }
-        
-            
-        })
-        
-        
-        /*try? session.getCAPTCHA { (result: Result<CAPTCHAImage>) in
-            self.captchaImage.image = result.value
-        }*/
-        
-        
+        loadSubs()
+        loadCaptcha()
         
         // Do any additional setup after loading the view.
     }
@@ -64,15 +38,72 @@ class PostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func loadCaptcha() {
+        try? session.checkNeedsCAPTCHA { (needsCaptcha: Result<Bool>) in
+            switch needsCaptcha {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let needs):
+                if needs {
+                    self.captchaImage.isHidden = false
+                    self.captchaTextField.isHidden = false
+                    try? self.session.getIdenForNewCAPTCHA({(result) -> Void in
+                        switch result {
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        case .success(let captchaStr):
+                            try? self.session.getCAPTCHA(captchaStr, completion: {(result) -> Void in
+                                switch result {
+                                case .failure(let err):
+                                    print(err.localizedDescription)
+                                case .success(let captcha):
+                                    DispatchQueue.global().async {
+                                        DispatchQueue.main.async {
+                                            self.captchaImage.image = captcha
+                                        }
+                                    }
+                                }
+                                
+                            })
+                        }
+                        
+                    })
+                }
+            }
+       }
     }
-    */
+    
+    func loadSubs() {
+        try? self.session.getUserRelatedSubreddit(.subscriber, paginator: Paginator(), completion: { (result: Result<Listing>) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let response):
+                
+                print("Hi")
+            }
+        })
+    }
 
 }
+
+extension PostViewController : UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return self.source.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        print(String(component))
+        return 1
+    }
+    
+}
+
+
+
+
+
+
+
+
